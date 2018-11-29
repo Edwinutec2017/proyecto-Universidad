@@ -1,0 +1,46 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 11-08-2018, 06:53:35 PM
+    Author     : Edwin
+*/
+.col-xs-updated {        
+    width: 92% !important;
+}
+#banner{
+    background-color: #a94442;
+}
+#principal{
+    background-color: #cccccc;
+}
+#registro{
+    background-color: #ffffff;
+    border: 2px;
+    border-style: solid;
+}
+#datos{
+    background-color: #ffffff;
+    border: 2px;
+    border-style: solid; 
+}
+.butn{
+    background-color: #000;
+    color: #ffffff;   
+}
+.container{
+    padding-top: 20px;
+}
+#long{
+    color:#0000ff;
+    
+}
+.dolar-icon {
+    background-image: url("#{facesContext.externalContext.request.contextPath}/resources/img/lupa.png") !important;
+}
+.imagenFondo{
+   background-image: url("#{request.contextPath}/resources/img/fondo1.png");
+   background-size: cover;
+}

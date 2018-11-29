@@ -1,0 +1,82 @@
+
+/* 
+    Created on : 11-08-2018, 03:48:08 PM
+    Author     : omar.hernandezusam
+*/
+#body{
+    background-image: url(#{request.contextPath}/resources/img/fondo1.png);
+    background-size: cover;
+    text-align: center;
+    text-align:justify;
+    background-color: slategray;
+}
+
+#cabecera{
+    background: grey;
+    border: 5px solid #b42727;
+    padding: 20px;
+    -moz-border-radius: 20px;
+    -web-moz-border-radiuskit-border-radius: 20px;
+    border-radius: 20px; 
+    
+    -moz-box-shadow: rgb(150, 150, 150) 5px 5px;
+    -webkit-box-shadow: rgb(150,150,150) 5px 5px;
+    box-shadow: rgb(150,150,150) 5px 5px;
+
+}
+
+#titulo{
+    font: bold 34px vernada, sans-serif;
+    text-shadow: rgb(0, 0, 150) 3px 3px 3px;
+    color: floralwhite;
+    }
+
+#seccion{
+    background-color:  activeborder;
+    align-content: center;
+    width: 457px;
+    margin: 20px;
+    -moz-border-radius: 20px;
+    -web-moz-border-radiuskit-border-radius: 20px;
+    border-radius: 20px; 
+    border: 5px solid #b42727;
+}
+
+#menu{    
+    background: tomato;
+    padding: 5px 15px;  
+    -moz-border-radius: 20px;
+    -web-moz-border-radiuskit-border-radius: 20px;
+    border-radius: 20px; 
+}
+
+#menu li{
+    display: inline-block;
+    list-style: none;
+    padding: 5px;
+    font: bold 14px verdana, sans-serif;
+}
+
+#agrupar{
+    width: 980px;
+    margin: 15px auto;
+    text-align: left;
+}
+
+/*#body{
+    text-align:justify;
+    background-color: slategray;
+}*/
+
+#login{
+    background-color:activeborder;
+}
+
+#pie {
+color: white;    
+clear: both;
+text-align: center;
+padding: 20px;
+border-top: 2px solid #999999;
+}
+

@@ -1,0 +1,141 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1" http-equiv="X-UA-Conpatible" />
+        <h:outputStylesheet library="css" name="/bootstrap.min.css"/>
+        <h:outputStylesheet library="css" name="/estilo.css"/>
+        <title>Usuarios</title>
+
+    </h:head>
+     <h:body id="principal" styleClass="imagenFondo" >
+         <img src="../resources/img/fondo1.png" alt=""/>
+        <div class="col-lg-12" id="banner" >
+            <center><label style="color: #ffffff"><h1>REGISTROS DE USUARIOS</h1></label></center>
+        </div>
+        <div class="container" style="padding-top: 100px"> 
+            <div class="row">                     
+                <div class="col-xs-12" id="registro">
+                    <h4>Formulario de registro usuarios</h4>                  
+                    <h:form id="form">
+                        <p:growl id="msg" showDetail="true"/>
+
+                        <p:panel id="panel" style="border-color: #ffffff">   
+
+                            <div class="col-lg-4">
+
+                                <h:outputLabel value="Nombre." styleClass="control-label"/>
+                                <p:inputMask id="nombre" value="#{beanRegUser.nombre_usuario}" styleClass="form-control" mask="" required="true" placeholder="Nombre.." requiredMessage="Requerido Nombre"/>
+                                <h:outputLabel value="Telefono." styleClass="control-label"/>
+                                <p:inputMask id="telefono" value="#{beanRegUser.telefono}" styleClass="form-control" mask="9999-9999" required="true" placeholder="1234-5678" requiredMessage="Requerido Telefono"/>
+                                <h:outputLabel value="Direccion." styleClass="control-label"/>
+                                <p:inputMask id="direccion" value="#{beanRegUser.direccio_usuario}" mask="" required="true" placeholder="Direccion" styleClass="form-control" requiredMessage="Requerido Direccion"/>
+                                <p:separator/>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <h:outputLabel value="DUI." class="control-label"/>
+                                <p:inputMask id="dui" value="#{beanRegUser.DUI}" styleClass="form-control" mask="99999999-9" placeholder="12345678-9"/>
+                                <h:outputLabel value="NIT." class="control-label"/>
+                                <p:inputMask id="nit" value="#{beanRegUser.NIT}" styleClass="form-control" mask="9999-999999-999-9" required="true" placeholder="1234-123456-123-1" requiredMessage="Requerido NIT"/>
+                                <h:outputLabel value="Correo." styleClass="control-label"/>
+                                <p:inputMask id="correo" value="#{beanRegUser.correo}" styleClass="form-control"  mask="" placeholder="Correo" required="true" requiredMessage="Requerido Correo" validatorMessage="Formato de correo invalido">
+                                    <f:validateRegex pattern="([^.@]+)(\.[^.@]+)*@([^.@]+\.)+([^.@]+)"  /> 
+                                </p:inputMask>                     
+                                <p:separator/>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <h:outputLabel value="Fecha Nacimiento" class="control-label"/>
+                                <p:inputMask id="nacimiento" value="#{beanRegUser.fecha_nacimiento}" required="true" placeholder="dia-mes-año" styleClass="form-control" mask="99-99-9999" requiredMessage="Requerido Fecha Nacimiento"/>                        
+                                <h:outputLabel value="Genero." class="control-label"/>
+                                <h:selectOneMenu class="form-control" value="#{beanRegUser.genero}">
+                                    <f:selectItem itemValue="M" itemLabel="Masculino"/>
+                                    <f:selectItem itemValue="F" itemLabel="Femenino"/>
+                                </h:selectOneMenu>
+                                <h:outputLabel value="Tipo Usuario." class="control-label"/>
+                                <h:selectOneMenu value="#{beanRegUser.tipouser}"  class="form-control">
+                                    <f:selectItems value="#{beanRegUser.listausuario}"  var="tps" itemLabel="#{tps.tipoUsuario}" itemValue="#{tps.idTipoUsuario}"/>
+                                </h:selectOneMenu>
+                                <p:separator/>
+                            </div>
+                            <div class="col-lg-6">
+                                <p:commandButton value="Guardar"  update=":tabla" class="btn-block" style="color: #ffffff;background-color: #000" actionListener="#{beanRegUser.guardarUsuario()}" />
+                            </div>
+                            <div class="col-lg-6">
+                                <p:commandButton value="Limpiar"  update="panel" class="btn-block" style="background: #ffffff;color: #0000ff" actionListener="#{beanRegUser.limpiarDatos()}" />
+                            </div>
+
+                        </p:panel>
+
+                    </h:form>
+
+                </div>
+
+                <p:separator/>
+                <div  id="datos"> 
+                    <center><h3>Tabla de Datos</h3></center> 
+                    <p:dataTable var="user" value="#{beanRegUser.LIstUser}" id="tabla" class="table table-striped" >
+                        <p:column headerText="Nombre">
+                            <h:outputText value="#{user.nombreUsuario}" />   
+                        </p:column>                   
+
+
+                        <p:column headerText="TipoUsuario">
+                            <h:outputText value="#{user.idTipoUsuario}"/>   
+                        </p:column>
+                        <p:column headerText="Eliminar">
+                            <h:form>
+                                <p:growl id="msga" showDetail="true"/>
+                                <p:commandButton value="Eliminar"  update=":tabla" class="btn-block butn" actionListener="#{beanRegUser.eliminar(user.idRegUsuario)}" style="background-color: #ffffff;color: #cc0000"/>
+
+                            </h:form>
+                        </p:column>
+                        <p:column headerText="Actualizar">
+                            <h:form>
+                                <p:growl id="msga" showDetail="true"/>
+                                <p:commandButton value="Actualizar"  update=":tabla" class="btn-danger butn" actionListener="#{beanRegUser.actualizar(user.idRegUsuario)}" style="background-color: #ffffff;color: #cc0000"/>
+
+                            </h:form>
+                        </p:column>
+                        <p:column headerText="Generar">
+                            <h:form>
+                                <p:growl id="user" showDetail="true"/>
+                                <p:commandButton value="Usuario"  update=":tabla" class="btn-primary butn" actionListener="#{beanRegUser.CrearUsuario(user.idRegUsuario)}" style="background-color: #ffffff;color: #cc0000"/>
+                            </h:form>
+                        </p:column>
+                        <p:column headerText="Detalle">
+                            <h:form id="form">
+                                <p:growl id="delete" showDetail="true"/>
+                                <p:commandButton value="Detalle" actionListener="#{beanRegUser.Consulta(user.idRegUsuario)}"     update=":form2" onclick="PF('ventana').show();" icon="dolar-icon"  class="btn-primary butn"  style="background-color: #ffffff;color: #cc0000">
+
+                                </p:commandButton>
+                            </h:form>
+                        </p:column>
+                    </p:dataTable>
+                    <p:dialog widgetVar="ventana" header="Detalle de Usuarios" modal="true" height="400" width="400" showEffect="" hideEffect="" style="border-color: red;background-color: #cccccc">
+                        <h:form id="form2">
+                            <p:inputText value="Id :#{beanRegUser.id_reg_usuario}" placeholder="" readonly="true" class="form-control"/>
+                            <p:inputText value="Codigo :#{beanRegUser.cod_usuario}" placeholder="" readonly="true" class="form-control"/>
+                            <p:inputText value="Nombre :#{beanRegUser.nombre_usuario}" placeholder="" readonly="true" class="form-control"/>
+                            <p:inputText value="Telefono :#{beanRegUser.telefono}" placeholder="" readonly="true" class="form-control"/>
+                            <p:inputText value="Direccion :#{beanRegUser.direccio_usuario}" placeholder="" readonly="true" class="form-control"/>
+                            <p:inputText value="DUI :#{beanRegUser.DUI}" placeholder="" readonly="true" class="form-control"/>
+                            <p:inputText value="NIT :#{beanRegUser.NIT}" placeholder="" readonly="true" class="form-control"/>
+                            <p:inputText value="Fecha Nacimiento :#{beanRegUser.fecha_nacimiento}" placeholder="" readonly="true" class="form-control"/>
+                            <p:inputText value="Genero :#{beanRegUser.generos}" placeholder="" readonly="true" class="form-control"/>
+                            <p:inputText value="Tipo Usuario :#{beanRegUser.tipouser}" placeholder="" readonly="true" class="form-control"/>
+                            <p:inputText value="Estado :#{beanRegUser.estados}" placeholder="" readonly="true" class="form-control"/>
+                           
+                        </h:form>
+                    </p:dialog>
+                </div>
+            </div>
+        </div>
+    </h:body>
+</html>
+
